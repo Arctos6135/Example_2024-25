@@ -56,10 +56,10 @@ public class RobotContainer {
    */
   private void configureBindings() {
     Trigger driverA = new JoystickButton(driverController, XboxController.Button.kA.value);
-
+    Trigger driverX = new JoystickButton(driverController, XboxController.Button.kX.value);
     
     driverA.onTrue(new PrintCommand("You are pressing the A button"));
-
+    driverX.onTrue(new PrintCommand("You are pressing the X button"));
   }
 
   /**
