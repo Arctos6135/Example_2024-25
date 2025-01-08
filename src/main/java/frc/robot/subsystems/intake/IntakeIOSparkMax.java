@@ -12,7 +12,7 @@ import frc.robot.constants.FlamethrowerConstants;
 import frc.robot.constants.IntakeConstants;
 
 public class IntakeIOSparkMax extends IntakeIO {
-    public final CANSparkMax motor = new CANSparkMax(CANBusConstants.INTAKE_CAN_ID, MotorType.kBrushless); 
+    public final CANSparkMax motor = new CANSparkMax(5, MotorType.kBrushless); 
 
     public final RelativeEncoder encoder;
 

@@ -4,8 +4,13 @@
 
 package frc.robot;
 
+import frc.robot.commands.arm.RaiseArm;
+import frc.robot.commands.arm.ShootShooter;
 import frc.robot.constants.OtherConstants;
 import frc.robot.subsystems.drivetrain.Swerve;
+import frc.robot.subsystems.flamethrower.Flamethrower;
+import frc.robot.subsystems.flamethrower.FlamethrowerIO;
+import frc.robot.subsystems.Shooter.*;
 
 import java.io.File;
 import java.util.function.DoubleSupplier;
@@ -31,6 +36,8 @@ public class RobotContainer {
   private final Swerve drivetrain = new Swerve(new File(Filesystem.getDeployDirectory(), "swerve"));
 
   private final XboxController driverController = new XboxController(OtherConstants.DRIVER_CONTROLLER_PORT);
+  private final Flamethrower flamethrower = new Flamethrower(new FlamethrowerIO());
+  private final Shooter shooter = new Shooter(new ShooterIO());
 
  
   private final DoubleSupplier driverLeftStickY = () -> driverController.getRawAxis(XboxController.Axis.kLeftY.value);
@@ -59,7 +66,8 @@ public class RobotContainer {
     Trigger driverB = new JoystickButton(driverController, XboxController.Button.kB.value);
 
     
-    driverA.onTrue(new PrintCommand("You are pressing the A button"));
+    driverA.onTrue(new RaiseArm(flamethrower, 5)
+    .andThen(new ShootShooter(shooter, 0)));
     driverB.onTrue(new PrintCommand("You are pressing the B button!"));
     driverB.onFalse(new PrintCommand("You are not pressing the B button!"));
     Trigger driverX = new JoystickButton(driverController, XboxController.Button.kX.value);

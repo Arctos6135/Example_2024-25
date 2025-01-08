@@ -24,7 +24,7 @@ public class Flamethrower extends SubsystemBase{
     }
 
 
-    public void setVoltage(Double voltage){
+    public void setVoltage(double voltage){
         io.setVoltage(voltage);
     }
 }
